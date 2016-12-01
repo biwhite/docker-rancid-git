@@ -56,6 +56,12 @@ echo -e 'add user * USERNAME\nadd password * PASSWORD ENABLEPASS\nadd method * s
 chmod 600 .cloginrc 
 ```
 
+Add devices into the list of devices to probe
+```
+echo device1:cisco:up >> /home/rancid/var/devices/router.db
+echo device2:juniper:up >> /home/rancid/var/devices/router.db
+```
+
 Perform an initial run to check it all works!  
 
 ```
