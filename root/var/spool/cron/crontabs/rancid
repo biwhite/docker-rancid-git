@@ -1,2 +1,1 @@
-# m h dom mon dow usercommand
-*/5 * * * * rancid-run
+../../../../etc/rancid/rancid.cron
