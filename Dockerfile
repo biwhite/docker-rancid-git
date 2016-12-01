@@ -13,7 +13,7 @@ RUN  cd /usr/bin && ln -s aclocal aclocal-1.14 && ln -s automake automake-1.14 &
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz /tmp/
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 # setup sample config, default cron, 20 minute polling
-RUN mkdir /etc/rancid && cp /usr/share/rancid/rancid.conf.sample /etc/rancid && \
+RUN cp /usr/share/rancid/rancid.conf.sample /etc/rancid && \
     echo '*/20 * * * * /usr/bin/rancid-run >/home/rancid/var/logs/cron.log 2>/home/rancid/var/logs/cron.err' > /etc/rancid/rancid.cron
 RUN touch /home/rancid/.cloginrc
 ADD root /
