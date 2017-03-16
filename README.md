@@ -31,12 +31,13 @@ docker exec -it rancid-git bash
 You'll need to add some devices which you want the configs backed up from for this app to be useful!
 
 ```
-cp /etc/rancid/rancid-git/etc/rancid.conf.sample /etc/rancid/rancid.conf
+cp /root/rancid-git/etc/rancid.conf.sample /etc/rancid/rancid.conf
 echo 'LIST_OF_GROUPS="devices"; export LIST_OF_GROUPS' >> /etc/rancid/rancid.conf
 ```
 
 Add a group entry to the rancid.conf file, setup your git config for what name/email it commits to the git logs.
 ```
+chown -R rancid /home/rancid
 su - rancid
 git config --global user.email "me@here"
 git config --global user.name "My Name Here"
@@ -83,3 +84,5 @@ read the file on startup.
 ## ISSUES ##
 
   * Email output of logs fails, as there's no local SMTP server on this container.
+  * chown on /home/rancid volume mapping changes ownership of folder on host.  Need to map this volume owned by user rancid instead of root somehow
+  * might want to map /etc/hosts file in so hostname to IP mappings can be stored in there

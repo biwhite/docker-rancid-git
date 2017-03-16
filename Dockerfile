@@ -16,8 +16,11 @@ RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 RUN cp /usr/share/rancid/rancid.conf.sample /etc/rancid && \
     echo '*/20 * * * * /usr/bin/rancid-run >/home/rancid/var/logs/cron.log 2>/home/rancid/var/logs/cron.err' > /etc/rancid/rancid.cron
 RUN touch /home/rancid/.cloginrc
+# Don't omit config
+RUN sed -i -e "s/'show configuration'/'show configuration | display omit'/" /usr/bin/jrancid
 ADD root /
 # copy in sample files
+
 #
 VOLUME /home/rancid
 VOLUME /etc/rancid
